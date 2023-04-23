@@ -1,0 +1,61 @@
+﻿
+
+@model List<Audit>
+
+@{
+
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+	string Classtypee(string Recieved, string chossen)
+	{
+		if (Recieved == chossen)
+			return "active";
+		else
+			return "";
+
+	}
+}
+
+
+<div class="m-4">
+	<nav class="nav nav-tabs">
+		<a class="@Classtypee(ViewBag.activate, "All") nav-link nav-item" asp-controller="Audit" asp-action="Index" asp-route-sortOrder="All">All</a>
+		<a class="@Classtypee(ViewBag.activate, "Cash In") nav-link nav-item" asp-controller="Audit" asp-action="Index" asp-route-sortOrder="Cash In">Cash In</a>
+		<a class="@Classtypee(ViewBag.activate, "Cash Out") nav-link nav-item" asp-controller="Audit" asp-action="Index" asp-route-sortOrder="Cash Out">Cash Out</a>
+		<a class="@Classtypee(ViewBag.activate, "Lose") nav-link nav-item" asp-controller="Audit" asp-action="Index" asp-route-sortOrder="Lose">Lose</a>
+		<a class="@Classtypee(ViewBag.activate, "Win") nav-link nav-item" asp-controller="Audit" asp-action="Index" asp-route-sortOrder="Win">Win</a>
+
+	</nav>
+</div>
+
+
+
+<div class="m-4">
+	<table class="table">
+
+		<thead>
+
+			<tr>
+				<th>Created</th>
+				<th>Player Name</th>
+				<th>Audit Type</th>
+				<th>Amont</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			@foreach (var records in Model)
+			{
+
+				<tr>
+					<td>@records.Date</td>
+					<td>@records.Name</td>
+					<td>@records.AuditType.Name</td>
+					<td>@records.Ammount</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+</div>

@@ -1,0 +1,93 @@
+﻿@model VendorsViewModel
+@{
+	ViewData["Title"] = "Vendors List";
+}
+
+
+
+
+
+
+
+
+
+
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+
+	@if (TempData["VendorAdded"] != null)
+		@if ((bool)TempData["VendorAdded"] == true)
+		{
+			<div class="col-md-4 alert alert-primary">
+				<span>Vendor @TempData["AddedName"] has been added!</span>
+			</div>
+		}
+
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-4">
+			<a asp-controller="Vendor" asp-action="Add">Add a new vendor</a>
+
+		</div>
+
+		@if (TempData["undo"] != null)
+			@if ((bool)TempData["undo"] == true)
+			{
+				<div class="col-md-6">
+					The Vendor " @TempData["deletedVendorName"] "  was deletedd.
+					<a id="faid" asp-controller="Vendor" asp-action="retreave">Undo </a> this delete.
+				</div>
+			}
+
+
+
+		</div>
+
+
+
+		<table class="table table-bordered table-striped col-sm-9">
+			<thead>
+				<tr>
+					<th class="col-sm-3">Name</th>
+					<th class="col-sm-4">Address</th>
+					<th class="col-sm-2" style="width:34%">Action</th>
+				</tr>
+			</thead>
+		</table>
+
+
+
+
+		<div style="height: 500px;overflow: scroll;" class="col-sm-9">
+			<table class="table table-bordered table-striped">
+
+				<tbody>
+					@foreach (var vendor in Model.VendorsItems)
+						@if (vendor.IsDeleted == false)
+						{
+
+							<tr>
+								<td>@vendor.VendorName</td>
+								<td>
+									<p>Address1: @vendor.VendorAddress1</p>
+									@if (vendor.VendorAddress2 != null)
+									{
+										<br />
+										<p>Address2: @vendor.VendorAddress2</p>
+									}
+								</td>
+								<td>
+									<partial name="_VendorsactionsLinksPartial" model="@vendor" />
+								</td>
+							</tr>
+
+						}
+
+					</tbody>
+				</table>
+			</div>
+
+			<br />
+			<partial name="_VendorsActiveCathegoryPartial" />

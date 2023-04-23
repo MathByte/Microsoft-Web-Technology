@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	<link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<header class="container">
+		<a asp-controller="Home" asp-action="Index">
+			<img src="~/Logo.png" style="height:150px" />
+		</a>
+		<a asp-controller="Home" asp-action="Index" style="padding: 10px">Home</a>
+		<a asp-controller="Transaction" asp-action="Add" style="padding: 10px">Add Transaction</a>
+		<a asp-controller="Transactions" asp-action="Index" style="padding: 10px">Transactions</a>
+		<a asp-controller="Companys" asp-action="Index" style="padding: 10px">Companies</a>
+	</header>
+
+	<div class="container">
+
+
+		<!--each time I am updating Tempdata[showmessage] inside each adding, editing, and deleting inside controller. Iether transactions list page or companys list page-->
+		@if ((string)@TempData["showmessage"] == "show")
+		{
+			<div class="btn btn-success">@TempData["message"]</div>
+		}
+		else
+		{
+			<div></div>
+		}
+
+		<div>
+
+			<h1>@TempData["PageName"]</h1>
+		</div>
+
+
+		@RenderBody()
+	</div>
+</body>
+</html>

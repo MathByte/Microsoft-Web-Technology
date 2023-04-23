@@ -1,0 +1,12 @@
+﻿@model Movie
+@{
+    ViewData["Title"] = "Delete Movie";
+}
+
+<h2>Confirm Deletion:</h2>
+<h3>@Model.Name (@Model.Year)</h3>
+
+<form asp-controller="Movie" asp-action="DeleteById" asp-route-id="@Model.MovieId" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="submit" class="btn btn-primary" value="Delete" />
+    <a asp-controller="Movies" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>

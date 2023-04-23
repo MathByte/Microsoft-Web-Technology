@@ -1,0 +1,17 @@
+﻿@model Company
+@{
+	ViewBag.Title = "Delete Company";
+}
+
+<h2>Confirm Deletion</h2>
+<h3>@Model.Name (@Model.TickerSymbol)</h3>
+
+<form asp-action="Delete" method="post">
+	<input type="hidden" asp-for="CompanyId" />
+	<input type="hidden" asp-for="TickerSymbol" />
+	<input type="hidden" asp-for="Address" />
+	<input type="hidden" asp-for="Name" />
+
+	<button type="submit" class="btn btn-primary">Delete</button>
+	<a asp-controller="Companys" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>

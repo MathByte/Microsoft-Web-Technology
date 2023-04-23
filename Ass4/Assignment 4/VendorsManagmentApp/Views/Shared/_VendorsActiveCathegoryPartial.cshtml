@@ -1,0 +1,37 @@
+﻿
+@model VendorsViewModel
+
+@{
+
+	string styletypee(int Recieved, int chossen)
+	{
+		if (Recieved == chossen)
+			return "background-color:gray;";
+		else
+			return "";
+
+	}
+
+
+
+
+}
+
+
+<table class="table table-bordered table-striped col-sm-3">
+	<thead>
+		<tr>
+			<th style="@styletypee(Model.ActiveCategoryindex, 0)"><a asp-controller="Vendors" asp-action="Index" asp-route-sortOrder="0">A-E</a></th>
+			<th style="@styletypee(Model.ActiveCategoryindex, 1)"><a asp-controller="Vendors" asp-action="Index" asp-route-sortOrder="1">F-K</a></th>
+			<th style="@styletypee(Model.ActiveCategoryindex, 2)"><a asp-controller="Vendors" asp-action="Index" asp-route-sortOrder="2">L-R</a></th>
+			<th style="@styletypee(Model.ActiveCategoryindex, 3)"><a asp-controller="Vendors" asp-action="Index" asp-route-sortOrder="3">S-Z</a></th>
+		</tr>
+	</thead>
+
+</table>
+
+
+
+
+
+

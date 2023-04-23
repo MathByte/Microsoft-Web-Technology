@@ -1,0 +1,28 @@
+﻿@model Movie
+@{
+    ViewData["Title"] = $"The actors in the movie {Model.Name} ({Model.Year})";
+}
+
+<h1>@ViewData["Title"]</h1>
+<a asp-controller="Movie" asp-action="Add">Add a new movie</a>
+<span class="linkSpacer">|</span>
+<a asp-controller="Movies" asp-action="Index">All movies</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var casting in Model.Castings)
+        {
+            <tr>
+                <td>@casting.Actor.FirstName</td>
+                <td>@casting.Actor.LastName</td>
+                <td>@casting.Role</td>
+            </tr>
+        }
+    </tbody>
+</table>

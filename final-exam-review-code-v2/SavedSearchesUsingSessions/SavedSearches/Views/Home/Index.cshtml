@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Home Page";
+
+    // Do some logic to parse out search history from session value:
+    string searchKey = Context.Request.Cookies["search_key"];
+    string[] searchHistory = new string[] { };
+
+    if (searchKey != null)
+    {
+        string searchHistoryValue = Context.Session.GetString(searchKey);
+
+        if (searchHistoryValue != null)
+            searchHistory = searchHistoryValue.Split('|', StringSplitOptions.RemoveEmptyEntries);
+    }
+}
+
+<div>
+    <!-- search form: -->
+    <form asp-controller="Home" asp-action="Search" method="get" enctype="application/x-www-form-urlencoded">
+        <div class="form-group">
+            <label for="q">Search</label>
+            <input type="text" id="q" name="q" class="form-control" placeholder="What are you looking for?" />
+        </div>
+        <input type="submit" value="Go" class="btn btn-primary" />
+    </form>
+</div>
+
+<div>
+    <!-- show the saved searches: -->
+    <h4>Your past searches this session:</h4>
+    @if (searchHistory.Length > 0)
+    {
+        <ul>
+            @foreach (var s in searchHistory)
+            {
+                <li>@s</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>You do not have any past searches!</p>
+    }
+</div>

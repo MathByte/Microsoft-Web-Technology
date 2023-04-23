@@ -1,0 +1,148 @@
+﻿@model InvoicesViewModel
+
+
+@{
+
+
+	string findWhichOne(int x)
+	{
+		@for (int i = 0; i < @Model.VendorInvoiceItems.Count(); i++)
+		{
+			if (Model.VendorInvoiceItems[i].InvoiceId == x)
+				return Model.VendorInvoiceItems[i].InvoiceNumber;
+		}
+
+		return "";
+	}
+
+	string colorselection(int x)
+	{
+		if (x == Model.venderInvoiceselectedItemID)
+		{
+			return "Gray";
+		}
+
+		return "";
+	}
+
+
+
+
+
+
+}
+
+
+<div class="KKboarder">
+	<div class="KKmargin">
+
+		<div class="row">
+			<div class="col-sm-6">
+
+
+
+				<div class="KKtitle KKelementMarginBotton"> Invoice for @Model.Vendor_name </div>
+
+				<div class="KKaddres KKelementMarginBotton">  @Model.Vendor_address</div>
+
+				<div class="title " style="font-weight:bold;"> Invoices:</div>
+
+
+				<div class="btn-group-vertical">
+					@for (int i = 0; i < @Model.VendorInvoiceItems.Count(); i++)
+					{
+						<a style="background-color:@colorselection(Model.VendorInvoiceItems[i].InvoiceId); width: 150px; padding-left: 10px;"
+						   asp-controller="Invoices" asp-action="GetLineItems"
+						   asp-route-VendorId="@TempData["VendorId"]" asp-route-InvoiceId="@Model.VendorInvoiceItems[i].InvoiceId">
+							Invoice @Model.VendorInvoiceItems[i].InvoiceNumber
+						</a>
+					}
+
+				</div>
+
+
+			</div>
+
+			<div class="col-sm-6">
+				<div style="text-align: right" class="KKelementMarginBotton">
+					<a asp-for="ReturnString" asp-controller="Vendors" asp-action="Index" asp-route-sortOrder="@Model.sortOrderIndex"> @Model.ReturnString</a>
+				</div>
+				<div style="text-align:right" class="KKterms KKelementMarginBotton">Terms: @Model.VendorInvoiceTerm[0].TermsDueDays days</div>
+
+				<div class="KKelementMarginBotton">LineItems for Invoice @findWhichOne(Model.venderInvoiceselectedItemID):</div>
+
+
+
+
+				<table class="table table-bordered table-striped mt-2">
+					<thead>
+						<tr>
+							<th>Description</th>
+							<th>Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						@foreach (InvoiceLineItem li in @Model.VendorInvoiceLineItems)
+						{
+							<tr>
+								<td>@li.LineItemDescription</td>
+								<td>@li.LineItemAmount</td>
+							</tr>
+						}
+
+					</tbody>
+
+				</table>
+
+				<div class="row">
+					<div class="col-sm-2>
+						Description:
+
+
+
+						<input type="text" asp-for="@Model.description" />
+					</div>
+
+
+				</div>
+
+				@if (TempData["prevent"] != null)
+					if ((bool)TempData["prevent"] == false)
+					{
+
+
+						<form class="KKelementMarginBotton" asp-controller="Invoices" asp-action="AddLineDes" method="post" enctype="application/x-www-form-urlencoded">
+							<div style="display:none" asp-for="@Model.vendorId">@TempData["VendorId"]</div>
+							<div style="display:none" asp-for="@Model.invoiceId">@TempData["InvoiceId"]</div>
+							<table class="KKelementMarginBotton">
+								<tbody>
+									<tr>
+										<td>
+											Description:
+										</td>
+										<td>
+											<input type="text" asp-for="@Model.description" />
+										</td>
+
+									</tr>
+									<tr>
+										<td>
+											Ammount:
+										</td>
+										<td>
+											<input type="text" asp-for="@Model.amount" />
+										</td>
+
+									</tr>
+								</tbody>
+
+							</table>
+							<input type="submit" value="Add new Line Item" class="btn btn-primary" />
+						</form>
+					}
+			</div>
+
+		</div>
+	</div>
+</div>

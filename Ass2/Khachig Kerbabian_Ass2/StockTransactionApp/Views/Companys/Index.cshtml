@@ -1,0 +1,41 @@
+﻿@model List<Company>
+
+
+
+
+<a asp-controller="Company" asp-action="Add">Create new</a>
+
+
+
+<table class="table table-bordered table-striped">
+
+	<thead>
+		<tr>
+			<th>Company Name</th>
+			<th>Company Address</th>
+			<th>Ticker</th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+		@foreach (var company in Model)
+		{
+
+			<tr>
+				<td>@company.Name</td>
+				<td>@company.Address</td>
+				<td>@company.TickerSymbol</td>
+				<td>
+					<a asp-controller="Transactions" asp-action="Index" asp-route-sortOrder="@company.CompanyId">Transactions</a>
+					<span class="linkSpacer">|</span>
+					<a asp-controller="Company" asp-action="Edit" asp-route-id="@company.CompanyId">Edit</a>
+					<span class="linkSpacer">|</span>
+					<a asp-controller="Company" asp-action="Delete" asp-route-id="@company.CompanyId">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+

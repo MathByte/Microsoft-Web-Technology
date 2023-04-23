@@ -1,0 +1,10 @@
+is_global = true
+build_property.TargetFramework = net5.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.PublishSingleFile = 
+build_property.IncludeAllContentForSelfExtract = 
+build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
+build_property.RootNamespace = StockTransactionApp
+build_property.ProjectDir = C:\Users\khach\OneDrive - Conestoga College\Documents\Conestoga\2021-2022\PROG2230-21F-Sec1&2-Programming Mic Web Tech\Ass1\Khachig Kerbabian\StockTransactionApp\

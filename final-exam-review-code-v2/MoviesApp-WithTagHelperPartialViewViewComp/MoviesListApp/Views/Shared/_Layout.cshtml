@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/site.css">
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/js/site.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="jumbotron">
+            <h1>Movies App</h1>
+        </header>
+        <!-- use our custom taghelper: -->
+        <last-action-message />
+
+        @RenderBody()
+    </div>
+</body>
+</html>

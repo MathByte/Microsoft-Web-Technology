@@ -1,0 +1,7 @@
+﻿@model Movie
+
+<a asp-controller="Movie" asp-action="GetActorsInMovie" asp-route-movieId="@Model.MovieId">Actors</a>
+<span class="linkSpacer">|</span>
+<a asp-controller="Movie" asp-action="Edit" asp-route-id="@Model.MovieId">Edit</a>
+<span class="linkSpacer">|</span>
+<a asp-controller="Movie" asp-action="Delete" asp-route-id="@Model.MovieId">Delete</a>

@@ -1,0 +1,69 @@
+﻿
+
+@model List<Transaction>
+@{
+	ViewData["Title"] = "All Transactions";
+}
+
+
+<h1>@ViewData["Title"]</h1>
+<a asp-controller="Transaction" asp-action="Add">Add new movie</a>
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>Ticker Symbol</th>
+			<th>Transaction Type</th>
+			<th>Company Name</th>
+			<th>Quantity</th>
+			<th>Share Price</th>
+			<th>Commission Fee</th>
+			<th>Gross Value</th>
+			<th>Net Value</th>
+			<th>Action</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var transaction in Model)
+		{
+		<tr>
+			<td>@transaction.TickerSymbol</td>
+			<td>@transaction.TransactionType.Name</td>
+			<td>@transaction.CompanyName</td>
+			<td>@transaction.Quantity</td>
+			<td>@transaction.SharePrice</td>
+			<td>@transaction.TransactionType.CommissionFee</td>
+
+			<!--TO DISPLAY  Dollar sign in HTML I used Unicode &#36; 
+				also I checked if the resaults are less than 0 so I can know when to add Dollar sign or not-->
+			@if (@transaction.GrossValue > 0)
+			{
+				<td>@transaction.GrossValue</td>
+			}
+			else
+			{
+				<td> &#36;( @(transaction.GrossValue * -1) )</td>
+			}
+
+
+			@if (@transaction.NetValue > 0)
+			{
+				<td>@transaction.NetValue</td>
+			}
+			else
+			{
+				<td> &#36;( @(transaction.NetValue * -1))</td>
+			}
+
+
+
+			<td>
+				<a asp-controller="Transaction" asp-action="Edit" asp-route-id="@transaction.TransactionId">Edit</a>
+				<span class="linkSpacer">|</span>
+				<a asp-controller="Transaction" asp-action="Delete" asp-route-id="@transaction.TransactionId">Delete</a>
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>
+

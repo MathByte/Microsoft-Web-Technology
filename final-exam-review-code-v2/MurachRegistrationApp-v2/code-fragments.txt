@@ -1,0 +1,66 @@
+            string propName = nameof(customer.DOB);
+            if (ModelState.GetValidationState(propName) == ModelValidationState.Valid)
+            {
+                if (customer.DOB > DateTime.Today)
+                {
+                    ModelState.AddModelError(propName, "A date of birth cannot be in the future.");
+                }
+            }
+
+~~~~~~~~~~
+
+jQuery.validator.addMethod("minimumage", function(value, element, param) {
+	if (value === '')
+		return false;
+
+	var dateToCheck = new Date(value);
+	if (dateToCheck === "Invalid Date")
+		return false;
+
+	var minYears = Number(param);
+
+	dateToCheck.setFullYear(dateToCheck.getFullYear() + minYears);
+
+	var today = new Date();
+	return dateToCheck <= today;
+});
+
+jQuery.validator.unobtrusive.adapters.addSingleVal("minimumage", "years");
+
+~~~~~~~~~
+
+.input-validation-error {
+    border: 2px solid #dc3545;  /* same red as text-danger */
+    background-color: #faebd7;  /* antique white */
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.validation-summary-errors ul {
+    list-style: none;
+}
+
+~~~~~~~~~~
+add row class to form-group elmts + col-sm-2 (label) & col-sm-4 (input)
++
+for validation err msg spans:
+        <div class="col">
+            <span asp-validation-for="@Model.Username" class="text-danger"></span>
+        </div>
+
+~~~~~~~~~~~
+@section scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/minimum-age.js"></script>
+}
+
++ 
+
+in layout just before body closing tag:
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @RenderSection("scripts", false)
+
+

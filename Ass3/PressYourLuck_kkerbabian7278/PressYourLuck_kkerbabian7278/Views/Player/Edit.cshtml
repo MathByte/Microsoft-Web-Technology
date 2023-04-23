@@ -1,0 +1,37 @@
+﻿@model Player
+
+@if ((bool)TempData["showResalts"] == true)
+{
+	<div class="container">
+
+		<div class="alert alert-primary" role="alert">You Cashed out for &#36;@TempData["totalCoins"]</div>
+
+
+	</div>
+
+}
+
+<div class="container">
+	<main role="main" class="pb-3 jumbotron">
+		<h1>@TempData["Title"]</h1>
+	</main>
+</div>
+
+
+
+<h4>Please enter your name and the number of coins you have to get started.</h4>
+
+<form asp-controller="Player" asp-action="Add" method="post" enctype="application/x-www-form-urlencoded">
+	<div asp-validation-summary="All" class="text-danger"></div>
+	<div class="form-group">
+		<label asp-for="Name" for="Name">Name</label>
+		<br />
+		<input asp-for="Name" type="text" id="Name" name="Name" />
+	</div>
+	<div class="form-group">
+		<label asp-for="TotalCoins" for="TotalCoins">Total Coins</label>
+		<br />
+		<input asp-for="TotalCoins" type="text" id="TotalCoins" name="TotalCoins" />
+	</div>
+	<input type="submit" value="Join The Game!" class="btn btn-primary" />
+</form>

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d915e273-7ca9-411d-8f1c-5d0488eb99a4": {
+      "ProjectGuid": "d915e273-7ca9-411d-8f1c-5d0488eb99a4",
+      "DisplayName": "StockTransactionApp",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

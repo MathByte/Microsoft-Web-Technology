@@ -1,0 +1,23 @@
+﻿@model TopQuartersByEmployeeModel
+
+<h4>Top Quarters by Employee</h4>
+
+<ul>
+	<!-- loop thru our top movies: -->
+	@for (int i = 0; i < Model.NumberOfQuartersToDisplay; i++)
+	{
+		<li>
+			<div class="row">
+				<span class="col-sm-4 " style="padding-right: 0px;  margin-right: 0px; margin-left: 0px; ">@(i + 1). @Model.NumberOfQuartersIntermsOfSale[@i].Year Q @Model.NumberOfQuartersIntermsOfSale[@i].Quarter:</span>
+				<div class="col-sm-2 font-weight-bold" style="padding-right: 0px; padding-left: 0px;">&#36;@Model.NumberOfQuartersIntermsOfSale[@i].Amount</div>
+			</div>
+
+			<div class="row col-sm-10" style="margin-left: 5px; margin-bottom: 15px; ">
+				<span class="rounded bg-primary" style="padding-left: 10px; padding-right: 10px;"  >@Model.NumberOfQuartersIntermsOfSale[@i].Employee.Fullname </span>
+			</div>
+
+
+
+		</li>
+	}
+</ul>

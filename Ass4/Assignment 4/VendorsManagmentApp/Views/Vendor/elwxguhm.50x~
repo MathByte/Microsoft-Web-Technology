@@ -1,0 +1,84 @@
+﻿@model Vendor
+@{
+	string title = ViewBag.Action + " a Vendor";
+	ViewBag.Title = title;
+}
+
+
+
+<h1>@title</h1>
+<form asp-controller="Vendor" asp-action="@ViewBag.Action" method="post" enctype="application/x-www-form-urlencoded">
+	<div asp-validation-summary="All" class="text-danger"></div>
+
+	<input type="hidden" asp-for="VendorId" />
+
+
+
+
+	<div class="form-group">
+		<label asp-for="VendorName">Name:</label>
+		<input type="text" asp-for="VendorName" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="VendorAddress1">Address1:</label>
+		<input type="text" asp-for="VendorAddress1" class="form-control" />
+		<label asp-for="VendorAddress2">Address2:</label>
+		<input type="text" asp-for="VendorAddress2" class="form-control" />
+	</div>
+
+	<div class="form-group">
+		<label asp-for="VendorCity">City:</label>
+		<input type="text" asp-for="VendorCity" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="VendorState">Zip Code:</label>
+		<input type="text" asp-for="VendorState" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="VendorZipCode">Phone:</label>
+		<input type="text" asp-for="VendorZipCode" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="VendorContactFirstName">Contact First name:</label>
+		<input type="text" asp-for="VendorContactFirstName" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="VendorContactLastName">Contact Last name:</label>
+		<input type="text" asp-for="VendorContactLastName" class="form-control" />
+	</div>
+
+
+	<div class="form-group">
+		<label asp-for="DefaultTermsId">Default Terms</label>
+		<!-- add a drop-down for genre options: -->
+		<select asp-for="DefaultTermsId" class="form-control">
+			<option value="">Select term..</option>
+			@foreach (Term t in ViewBag.Terms)
+			{
+				<option value="@t.TermsId">@t.TermsDueDays</option>
+			}
+		</select>
+	</div>
+
+
+	
+	<div class="form-group">
+		<label asp-for="DefaultAccountNumber">Default acct #:</label>
+		<!-- add a drop-down for genre options: -->
+		<select asp-for="DefaultAccountNumber" class="form-control">
+			<option value="">Select DefaultAccountNumber..</option>
+			@foreach (GeneralLedgerAccount gla in ViewBag.generalLedgerAccounts)
+			{
+				<option value="@gla.AccountNumber">@gla.AccountNumber</option>
+			}
+		</select>
+	</div>
+
+
+
+
+
+	<input type="submit" class="btn btn-primary" value="@ViewBag.Action" />
+	<a asp-controller="Transactions" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>
+

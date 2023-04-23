@@ -1,0 +1,10 @@
+is_global = true
+build_property.TargetFramework = net5.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.PublishSingleFile = 
+build_property.IncludeAllContentForSelfExtract = 
+build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
+build_property.RootNamespace = Bookstore
+build_property.ProjectDir = C:\Users\khach\Documents\Conestoga\2021-2022\PROG2230-21F-Mic Web Tech\Final exam review Code\final-exam-review-code-v2\BookstoreWithFullAuthentnAndAuthorn\Bookstore\
